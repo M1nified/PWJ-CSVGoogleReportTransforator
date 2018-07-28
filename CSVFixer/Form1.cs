@@ -14,7 +14,7 @@ namespace CSVFixer
 {
     public partial class Form1 : Form
     {
-        private System.Collections.ArrayList defaultCoumns = new System.Collections.ArrayList() {
+        private readonly System.Collections.ArrayList defaultCoumns = new System.Collections.ArrayList() {
             "Order Creation Date",
             "Currency of Transaction",
             "Order Amount",
@@ -29,9 +29,24 @@ namespace CSVFixer
             "Item 1 Quantity"
         };
 
+        private System.Collections.ArrayList columnsToAdd = new System.Collections.ArrayList()
+        {
+            "Merchant Currency",
+            "Currency Conversion Rate",
+            "Amount (Merchant Currency)"
+        };
+
+        private string merchantCurrency = "PLN";
+
+        private readonly string fixerIoApiKey = "88b9bb8fb42b5a735fe7f7fd8f90345f";
+
         public Form1()
         {
             InitializeComponent();
+            foreach(var col in this.columnsToAdd)
+            {
+                checkedListBox_columnsToAdd.Items.Add(col, true);
+            }
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)

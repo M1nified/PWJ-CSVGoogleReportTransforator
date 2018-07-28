@@ -41,10 +41,12 @@ namespace CSVFixer
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_clearfilelist = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkedListBox_columnsToAdd = new System.Windows.Forms.CheckedListBox();
+            this.checkBox_removeCanceled = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.button_doit = new System.Windows.Forms.Button();
-            this.checkBox_removeCanceled = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,14 +80,14 @@ namespace CSVFixer
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.button_clearfilelist);
-            this.panel1.Location = new System.Drawing.Point(0, 107);
+            this.panel1.Location = new System.Drawing.Point(6, 107);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(652, 32);
+            this.panel1.Size = new System.Drawing.Size(640, 32);
             this.panel1.TabIndex = 1;
             // 
             // button_clearfilelist
             // 
-            this.button_clearfilelist.Location = new System.Drawing.Point(6, 3);
+            this.button_clearfilelist.Location = new System.Drawing.Point(0, 3);
             this.button_clearfilelist.Name = "button_clearfilelist";
             this.button_clearfilelist.Size = new System.Drawing.Size(75, 23);
             this.button_clearfilelist.TabIndex = 0;
@@ -98,6 +100,8 @@ namespace CSVFixer
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.checkedListBox_columnsToAdd);
             this.groupBox2.Controls.Add(this.checkBox_removeCanceled);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.checkedListBox1);
@@ -108,6 +112,36 @@ namespace CSVFixer
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Transformation";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(275, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Columns to add";
+            // 
+            // checkedListBox_columnsToAdd
+            // 
+            this.checkedListBox_columnsToAdd.FormattingEnabled = true;
+            this.checkedListBox_columnsToAdd.Location = new System.Drawing.Point(275, 32);
+            this.checkedListBox_columnsToAdd.Name = "checkedListBox_columnsToAdd";
+            this.checkedListBox_columnsToAdd.Size = new System.Drawing.Size(263, 109);
+            this.checkedListBox_columnsToAdd.TabIndex = 4;
+            // 
+            // checkBox_removeCanceled
+            // 
+            this.checkBox_removeCanceled.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox_removeCanceled.AutoSize = true;
+            this.checkBox_removeCanceled.Checked = true;
+            this.checkBox_removeCanceled.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_removeCanceled.Location = new System.Drawing.Point(275, 319);
+            this.checkBox_removeCanceled.Name = "checkBox_removeCanceled";
+            this.checkBox_removeCanceled.Size = new System.Drawing.Size(186, 17);
+            this.checkBox_removeCanceled.TabIndex = 3;
+            this.checkBox_removeCanceled.Text = "Remove CANCELED transactions";
+            this.checkBox_removeCanceled.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -140,18 +174,6 @@ namespace CSVFixer
             this.button_doit.Text = "DO IT!";
             this.button_doit.UseVisualStyleBackColor = false;
             this.button_doit.Click += new System.EventHandler(this.button_doit_Click);
-            // 
-            // checkBox_removeCanceled
-            // 
-            this.checkBox_removeCanceled.AutoSize = true;
-            this.checkBox_removeCanceled.Checked = true;
-            this.checkBox_removeCanceled.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_removeCanceled.Location = new System.Drawing.Point(276, 32);
-            this.checkBox_removeCanceled.Name = "checkBox_removeCanceled";
-            this.checkBox_removeCanceled.Size = new System.Drawing.Size(186, 17);
-            this.checkBox_removeCanceled.TabIndex = 3;
-            this.checkBox_removeCanceled.Text = "Remove CANCELED transactions";
-            this.checkBox_removeCanceled.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -186,6 +208,8 @@ namespace CSVFixer
         private CheckedListBox checkedListBox1;
         private Button button_doit;
         private CheckBox checkBox_removeCanceled;
+        private Label label2;
+        private CheckedListBox checkedListBox_columnsToAdd;
     }
 }
 
