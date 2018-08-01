@@ -41,12 +41,15 @@ namespace CSVFixer
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_clearfilelist = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox_keepChargedOnly = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.checkedListBox_columnsToAdd = new System.Windows.Forms.CheckedListBox();
             this.checkBox_removeCanceled = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.button_doit = new System.Windows.Forms.Button();
+            this.checkBox_removePaymentDeclined = new System.Windows.Forms.CheckBox();
+            this.button_addFiles = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,12 +76,13 @@ namespace CSVFixer
             this.groupBox1.Size = new System.Drawing.Size(652, 144);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Files";
+            this.groupBox1.Text = "Files (drag&&drop)";
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.button_addFiles);
             this.panel1.Controls.Add(this.button_clearfilelist);
             this.panel1.Location = new System.Drawing.Point(6, 107);
             this.panel1.Name = "panel1";
@@ -87,7 +91,7 @@ namespace CSVFixer
             // 
             // button_clearfilelist
             // 
-            this.button_clearfilelist.Location = new System.Drawing.Point(0, 3);
+            this.button_clearfilelist.Location = new System.Drawing.Point(562, 3);
             this.button_clearfilelist.Name = "button_clearfilelist";
             this.button_clearfilelist.Size = new System.Drawing.Size(75, 23);
             this.button_clearfilelist.TabIndex = 0;
@@ -100,6 +104,8 @@ namespace CSVFixer
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.checkBox_removePaymentDeclined);
+            this.groupBox2.Controls.Add(this.checkBox_keepChargedOnly);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.checkedListBox_columnsToAdd);
             this.groupBox2.Controls.Add(this.checkBox_removeCanceled);
@@ -112,6 +118,19 @@ namespace CSVFixer
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Transformation";
+            // 
+            // checkBox_keepChargedOnly
+            // 
+            this.checkBox_keepChargedOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox_keepChargedOnly.AutoSize = true;
+            this.checkBox_keepChargedOnly.Checked = true;
+            this.checkBox_keepChargedOnly.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_keepChargedOnly.Location = new System.Drawing.Point(275, 273);
+            this.checkBox_keepChargedOnly.Name = "checkBox_keepChargedOnly";
+            this.checkBox_keepChargedOnly.Size = new System.Drawing.Size(206, 17);
+            this.checkBox_keepChargedOnly.TabIndex = 6;
+            this.checkBox_keepChargedOnly.Text = "Keep CHARGED and only CHARGED";
+            this.checkBox_keepChargedOnly.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -175,6 +194,28 @@ namespace CSVFixer
             this.button_doit.UseVisualStyleBackColor = false;
             this.button_doit.Click += new System.EventHandler(this.button_doit_Click);
             // 
+            // checkBox_removePaymentDeclined
+            // 
+            this.checkBox_removePaymentDeclined.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBox_removePaymentDeclined.AutoSize = true;
+            this.checkBox_removePaymentDeclined.Checked = true;
+            this.checkBox_removePaymentDeclined.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_removePaymentDeclined.Location = new System.Drawing.Point(275, 296);
+            this.checkBox_removePaymentDeclined.Name = "checkBox_removePaymentDeclined";
+            this.checkBox_removePaymentDeclined.Size = new System.Drawing.Size(241, 17);
+            this.checkBox_removePaymentDeclined.TabIndex = 7;
+            this.checkBox_removePaymentDeclined.Text = "Remove PAYMENT_DECLINED transactions";
+            this.checkBox_removePaymentDeclined.UseVisualStyleBackColor = true;
+            // 
+            // button_addFiles
+            // 
+            this.button_addFiles.Location = new System.Drawing.Point(3, 3);
+            this.button_addFiles.Name = "button_addFiles";
+            this.button_addFiles.Size = new System.Drawing.Size(75, 23);
+            this.button_addFiles.TabIndex = 0;
+            this.button_addFiles.Text = "Add files";
+            this.button_addFiles.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -210,6 +251,9 @@ namespace CSVFixer
         private CheckBox checkBox_removeCanceled;
         private Label label2;
         private CheckedListBox checkedListBox_columnsToAdd;
+        private CheckBox checkBox_keepChargedOnly;
+        private CheckBox checkBox_removePaymentDeclined;
+        private Button button_addFiles;
     }
 }
 

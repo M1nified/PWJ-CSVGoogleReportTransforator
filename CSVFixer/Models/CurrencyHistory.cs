@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CSVFixer.Models
 {
-    class CurrencyHistory
+    public class CurrencyHistory
     {
-        public bool success;
-        public string timestamp;
-        public bool historical;
-        [DeserializeAs(Name = "base")]
-        public string baseCurrency { get; set; }
-        public string date;
-        public Dictionary<string, float> rates = new Dictionary<string, float>();
+        public bool Success { get; set; }
+        public string Timestamp { get; set; }
+        public bool Historical { get; set; }
+        [RestSharp.Deserializers.DeserializeAs(Name = "base")]
+        public string BaseCurrency { get; set; }
+        public string Date { get; set; }
+        public Dictionary<string, float> Rates = new Dictionary<string, float>();
     }
 }

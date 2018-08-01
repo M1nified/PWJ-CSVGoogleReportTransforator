@@ -40,9 +40,12 @@ namespace CSVFixer
 
         private readonly string fixerIoApiKey = "88b9bb8fb42b5a735fe7f7fd8f90345f";
 
+        private FixerIo fixerIo;
+
         public Form1()
         {
             InitializeComponent();
+            fixerIo = new FixerIo(fixerIoApiKey);
             foreach(var col in this.columnsToAdd)
             {
                 checkedListBox_columnsToAdd.Items.Add(col, true);
@@ -113,16 +116,50 @@ namespace CSVFixer
                 var csvExport = new CsvExport(";", false);
                 foreach(var row in dt.Rows)
                 {
-                    if(checkBox_removeCanceled.Checked && row["Financial Status"].ToLower().Trim() == "canceled")
+                    if (checkBox_removeCanceled.Checked && row["Financial Status"].ToLower().Trim() == "canceled")
                     {
                         continue;
                     }
+                    if (checkBox_removePaymentDeclined.Checked && row["Financial Status"].ToLower().Trim() == "payment_declined")
+                    {
+                        continue;
+                    }
+                    if (checkBox_keepChargedOnly.Checked && row["Financial Status"].ToLower().Trim() != "charged")
+                    {
+                        continue;
+                    }
+
+                    var ocd = row["Order Creation Date"].Trim();
+                    var dateTime = DateTime.ParseExact(ocd, "M/d/yy h:m tt", System.Globalization.CultureInfo.InvariantCulture);
+                    var transactionCurrency = row["Currency of Transaction"];
+                    var transactionValue = float.Parse(row["Amount Charged"]);
 
                     csvExport.AddRow();
                     foreach(var col in checkedListBox1.CheckedItems)
                     {
                         var colS = col.ToString();
                         csvExport[colS] = row[colS];
+                    }
+                    foreach(var col in checkedListBox_columnsToAdd.CheckedItems)
+                    {
+                        var colS = col.ToString();
+                        switch(colS)
+                        {
+                            case "Merchant Currency":
+                                csvExport[colS] = this.merchantCurrency;
+                                break;
+                            case "Currency Conversion Rate":
+                                var rate = fixerIo.GetCurrencyConversionRate(dateTime, transactionCurrency, this.merchantCurrency);
+                                csvExport[colS] = rate;
+                                break;
+                            case "Amount (Merchant Currency)":
+                                var value = this.fixerIo.Convert(dateTime, transactionCurrency, this.merchantCurrency, transactionValue);
+                                csvExport[colS] = value;
+                                break;
+                            default:
+                                csvExport[colS] = "";
+                                break;
+                        }
                     }
                 }
                 var newFileName = file + " FIXED.csv";
@@ -142,5 +179,6 @@ namespace CSVFixer
         {
             TransformAndSave();
         }
+
     }
 }
