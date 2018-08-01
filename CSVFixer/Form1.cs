@@ -119,7 +119,7 @@ namespace CSVFixer
             foreach (string file in listBox1.Items)
             {
                 DataTable dt = DataTable.New.ReadCsv(file);
-                var csvExport = new CsvExport(";", false);
+                var csvExport = new CsvExport(",", false);
                 foreach(var row in dt.Rows)
                 {
                     if (checkBox_removeCanceled.Checked && row["Financial Status"].ToLower().Trim() == "canceled")
@@ -175,7 +175,7 @@ namespace CSVFixer
                     if(fstRow != null)
                     {
                         var dateTime = ParseGoogleDateTime(fstRow["Order Creation Date"]);
-                        newFileName = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar + dateTime.Year + " " + dateTime.Month;
+                        newFileName = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar + dateTime.ToString("yyyy MM");
                     }
                 }
                 newFileName += ".csv";
