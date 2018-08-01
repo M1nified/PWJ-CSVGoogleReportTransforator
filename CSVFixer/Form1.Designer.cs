@@ -50,9 +50,14 @@ namespace CSVFixer
             this.button_doit = new System.Windows.Forms.Button();
             this.checkBox_removePaymentDeclined = new System.Windows.Forms.CheckBox();
             this.button_addFiles = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBox_nameFileWithMonth = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox1
@@ -104,11 +109,10 @@ namespace CSVFixer
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.checkBox_removePaymentDeclined);
-            this.groupBox2.Controls.Add(this.checkBox_keepChargedOnly);
+            this.groupBox2.Controls.Add(this.groupBox4);
+            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.checkedListBox_columnsToAdd);
-            this.groupBox2.Controls.Add(this.checkBox_removeCanceled);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.checkedListBox1);
             this.groupBox2.Controls.Add(this.button_doit);
@@ -121,11 +125,10 @@ namespace CSVFixer
             // 
             // checkBox_keepChargedOnly
             // 
-            this.checkBox_keepChargedOnly.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox_keepChargedOnly.AutoSize = true;
             this.checkBox_keepChargedOnly.Checked = true;
             this.checkBox_keepChargedOnly.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_keepChargedOnly.Location = new System.Drawing.Point(275, 273);
+            this.checkBox_keepChargedOnly.Location = new System.Drawing.Point(3, 19);
             this.checkBox_keepChargedOnly.Name = "checkBox_keepChargedOnly";
             this.checkBox_keepChargedOnly.Size = new System.Drawing.Size(206, 17);
             this.checkBox_keepChargedOnly.TabIndex = 6;
@@ -146,16 +149,15 @@ namespace CSVFixer
             this.checkedListBox_columnsToAdd.FormattingEnabled = true;
             this.checkedListBox_columnsToAdd.Location = new System.Drawing.Point(275, 32);
             this.checkedListBox_columnsToAdd.Name = "checkedListBox_columnsToAdd";
-            this.checkedListBox_columnsToAdd.Size = new System.Drawing.Size(263, 109);
+            this.checkedListBox_columnsToAdd.Size = new System.Drawing.Size(290, 109);
             this.checkedListBox_columnsToAdd.TabIndex = 4;
             // 
             // checkBox_removeCanceled
             // 
-            this.checkBox_removeCanceled.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox_removeCanceled.AutoSize = true;
             this.checkBox_removeCanceled.Checked = true;
             this.checkBox_removeCanceled.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_removeCanceled.Location = new System.Drawing.Point(275, 319);
+            this.checkBox_removeCanceled.Location = new System.Drawing.Point(3, 65);
             this.checkBox_removeCanceled.Name = "checkBox_removeCanceled";
             this.checkBox_removeCanceled.Size = new System.Drawing.Size(186, 17);
             this.checkBox_removeCanceled.TabIndex = 3;
@@ -196,11 +198,10 @@ namespace CSVFixer
             // 
             // checkBox_removePaymentDeclined
             // 
-            this.checkBox_removePaymentDeclined.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBox_removePaymentDeclined.AutoSize = true;
             this.checkBox_removePaymentDeclined.Checked = true;
             this.checkBox_removePaymentDeclined.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_removePaymentDeclined.Location = new System.Drawing.Point(275, 296);
+            this.checkBox_removePaymentDeclined.Location = new System.Drawing.Point(3, 42);
             this.checkBox_removePaymentDeclined.Name = "checkBox_removePaymentDeclined";
             this.checkBox_removePaymentDeclined.Size = new System.Drawing.Size(241, 17);
             this.checkBox_removePaymentDeclined.TabIndex = 7;
@@ -215,6 +216,39 @@ namespace CSVFixer
             this.button_addFiles.TabIndex = 0;
             this.button_addFiles.Text = "Add files";
             this.button_addFiles.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.checkBox_keepChargedOnly);
+            this.groupBox3.Controls.Add(this.checkBox_removePaymentDeclined);
+            this.groupBox3.Controls.Add(this.checkBox_removeCanceled);
+            this.groupBox3.Location = new System.Drawing.Point(275, 236);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(290, 100);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Data filters";
+            // 
+            // checkBox_nameFileWithMonth
+            // 
+            this.checkBox_nameFileWithMonth.AutoSize = true;
+            this.checkBox_nameFileWithMonth.Location = new System.Drawing.Point(6, 19);
+            this.checkBox_nameFileWithMonth.Name = "checkBox_nameFileWithMonth";
+            this.checkBox_nameFileWithMonth.Size = new System.Drawing.Size(154, 17);
+            this.checkBox_nameFileWithMonth.TabIndex = 9;
+            this.checkBox_nameFileWithMonth.Text = "Name file with single month";
+            this.checkBox_nameFileWithMonth.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.checkBox_nameFileWithMonth);
+            this.groupBox4.Location = new System.Drawing.Point(275, 147);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(290, 83);
+            this.groupBox4.TabIndex = 10;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Output file";
             // 
             // Form1
             // 
@@ -234,6 +268,10 @@ namespace CSVFixer
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -254,6 +292,9 @@ namespace CSVFixer
         private CheckBox checkBox_keepChargedOnly;
         private CheckBox checkBox_removePaymentDeclined;
         private Button button_addFiles;
+        private GroupBox groupBox4;
+        private CheckBox checkBox_nameFileWithMonth;
+        private GroupBox groupBox3;
     }
 }
 

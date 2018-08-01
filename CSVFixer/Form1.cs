@@ -107,6 +107,12 @@ namespace CSVFixer
             }
         }
 
+        private DateTime ParseGoogleDateTime(string dateString)
+        {
+            var dateTime = DateTime.ParseExact(dateString, "M/d/yy h:m tt", System.Globalization.CultureInfo.InvariantCulture);
+            return dateTime;
+        }
+
         private void TransformAndSave()
         {
             var fixedFileNames = new LinkedList<string>();
@@ -130,7 +136,7 @@ namespace CSVFixer
                     }
 
                     var ocd = row["Order Creation Date"].Trim();
-                    var dateTime = DateTime.ParseExact(ocd, "M/d/yy h:m tt", System.Globalization.CultureInfo.InvariantCulture);
+                    var dateTime = ParseGoogleDateTime(ocd);
                     var transactionCurrency = row["Currency of Transaction"];
                     var transactionValue = float.Parse(row["Amount Charged"]);
 
@@ -162,7 +168,17 @@ namespace CSVFixer
                         }
                     }
                 }
-                var newFileName = file + " FIXED.csv";
+                var newFileName = file + " FIXED";
+                if(checkBox_nameFileWithMonth.Checked)
+                {
+                    var fstRow = dt.Rows.FirstOrDefault();
+                    if(fstRow != null)
+                    {
+                        var dateTime = ParseGoogleDateTime(fstRow["Order Creation Date"]);
+                        newFileName = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar + dateTime.Year + " " + dateTime.Month;
+                    }
+                }
+                newFileName += ".csv";
                 csvExport.ExportToFile(newFileName);
                 fixedFileNames.AddLast(newFileName);
             }
