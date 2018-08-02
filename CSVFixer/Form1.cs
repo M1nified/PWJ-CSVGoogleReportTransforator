@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,8 @@ namespace CSVFixer
             "Amount (Merchant Currency)"
         };
 
+        private readonly string defaultOutputDateTimeFormat = "yyyy-MM-dd HH:mm";
+
         private string merchantCurrency = "PLN";
 
         private readonly string fixerIoApiKey = "88b9bb8fb42b5a735fe7f7fd8f90345f";
@@ -50,6 +53,7 @@ namespace CSVFixer
             {
                 checkedListBox_columnsToAdd.Items.Add(col, true);
             }
+            textBox_outputDateTimeFormat.Text = defaultOutputDateTimeFormat;
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -144,7 +148,21 @@ namespace CSVFixer
                     foreach(var col in checkedListBox1.CheckedItems)
                     {
                         var colS = col.ToString();
-                        csvExport[colS] = row[colS];
+                        var data = row[colS];
+                        switch (colS)
+                        {
+                            case "Order Creation Date":
+                                data = dateTime.ToString(textBox_outputDateTimeFormat.Text);
+                                break;
+                            default:
+                                float number;
+                                if(float.TryParse(data, out number))
+                                {
+                                    data = number.ToString(CultureInfo.CurrentCulture);
+                                }
+                                break;
+                        }
+                        csvExport[colS] = data;
                     }
                     foreach(var col in checkedListBox_columnsToAdd.CheckedItems)
                     {
