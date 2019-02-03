@@ -43,6 +43,8 @@ namespace CSVFixer
             this.button_clearfilelist = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBox_outputDateTimeFormat = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.checkBox_nameFileWithMonth = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.checkBox_keepChargedOnly = new System.Windows.Forms.CheckBox();
@@ -53,8 +55,6 @@ namespace CSVFixer
             this.label1 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.button_doit = new System.Windows.Forms.Button();
-            this.textBox_outputDateTimeFormat = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -145,6 +145,22 @@ namespace CSVFixer
             this.groupBox4.TabIndex = 10;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Output file";
+            // 
+            // textBox_outputDateTimeFormat
+            // 
+            this.textBox_outputDateTimeFormat.Location = new System.Drawing.Point(130, 40);
+            this.textBox_outputDateTimeFormat.Name = "textBox_outputDateTimeFormat";
+            this.textBox_outputDateTimeFormat.Size = new System.Drawing.Size(154, 20);
+            this.textBox_outputDateTimeFormat.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Output datetime format:";
             // 
             // checkBox_nameFileWithMonth
             // 
@@ -253,22 +269,6 @@ namespace CSVFixer
             this.button_doit.Text = "DO IT!";
             this.button_doit.UseVisualStyleBackColor = false;
             this.button_doit.Click += new System.EventHandler(this.button_doit_Click);
-            // 
-            // textBox_outputDateTimeFormat
-            // 
-            this.textBox_outputDateTimeFormat.Location = new System.Drawing.Point(130, 40);
-            this.textBox_outputDateTimeFormat.Name = "textBox_outputDateTimeFormat";
-            this.textBox_outputDateTimeFormat.Size = new System.Drawing.Size(154, 20);
-            this.textBox_outputDateTimeFormat.TabIndex = 10;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 43);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Output datetime format:";
             // 
             // Form1
             // 
