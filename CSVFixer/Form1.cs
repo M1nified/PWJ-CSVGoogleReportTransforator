@@ -120,6 +120,7 @@ namespace CSVFixer
         private void TransformAndSave()
         {
             var fixedFileNames = new LinkedList<string>();
+            var stringNumberExtractor = new StringNumberExtractor();
             foreach (string file in listBox1.Items)
             {
                 DataTable dt = DataTable.New.ReadCsv(file);
@@ -130,7 +131,7 @@ namespace CSVFixer
                     {
                         continue;
                     }
-                    if (checkBox_removePaymentDeclined.Checked && row["Financial Status"].ToLower().Trim() == "payment_declined")
+                    if (checkBox_removePaymentDeclined.Checked && row["Financial Status"].ToLower().Trim() == "payment declined")
                     {
                         continue;
                     }
@@ -142,7 +143,7 @@ namespace CSVFixer
                     var ocd = row["Order Creation Date"].Trim();
                     var dateTime = ParseGoogleDateTime(ocd);
                     var transactionCurrency = row["Currency of Transaction"];
-                    var transactionValue = float.Parse(row["Amount Charged"]);
+                    var transactionValue = float.Parse(stringNumberExtractor.Extract(row["Amount Charged"]));
 
                     csvExport.AddRow();
                     foreach(var col in checkedListBox1.CheckedItems)
