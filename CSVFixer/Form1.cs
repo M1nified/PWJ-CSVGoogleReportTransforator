@@ -15,7 +15,7 @@ namespace CSVFixer
 {
     public partial class Form1 : Form
     {
-        private readonly System.Collections.ArrayList defaultCoumns = new System.Collections.ArrayList() {
+        private readonly System.Collections.ArrayList defaultColumns = new System.Collections.ArrayList() {
             "Order Creation Date",
             "Currency of Transaction",
             "Order Amount",
@@ -104,7 +104,7 @@ namespace CSVFixer
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
                 var col = checkedListBox1.Items[i];
-                if (defaultCoumns.Contains(col))
+                if (defaultColumns.Contains(col))
                 {
                     checkedListBox1.SetItemCheckState(i, CheckState.Checked);
                 }
