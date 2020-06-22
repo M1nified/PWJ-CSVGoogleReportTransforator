@@ -15,31 +15,33 @@ namespace CSVFixer
 {
     public partial class Form1 : Form
     {
-        private readonly System.Collections.ArrayList defaultColumns = new System.Collections.ArrayList() {
-            "Order Creation Date",
-            "Currency of Transaction",
-            "Order Amount",
-            "Amount Charged",
-            "Financial Status",
-            "Total Tax",
-            "Buyer State",
-            "Buyer Postal Code",
-            "Buyer Country",
-            "Item 1 Name",
-            "Item 1 Price",
-            "Item 1 Quantity"
-        };
-
-        private System.Collections.ArrayList columnsToAdd = new System.Collections.ArrayList()
+        private Settings Settings;
+        private Settings DefaultSettings = new Settings()
         {
-            "Merchant Currency",
-            "Currency Conversion Rate",
-            "Amount (Merchant Currency)"
-        };
-
-        private readonly string defaultOutputDateTimeFormat = "yyyy-MM-dd HH:mm";
-
-        private string merchantCurrency = "PLN";
+            InputColumnsToInclude = new System.Collections.ArrayList()
+                    {
+                        "Order Creation Date",
+                        "Currency of Transaction",
+                        "Order Amount",
+                        "Amount Charged",
+                        "Financial Status",
+                        "Total Tax",
+                        "Buyer State",
+                        "Buyer Postal Code",
+                        "Buyer Country",
+                        "Item 1 Name",
+                        "Item 1 Price",
+                        "Item 1 Quantity"
+                    },
+                ColumnsToAdd = new System.Collections.ArrayList()
+                    {
+                        "Merchant Currency",
+                        "Currency Conversion Rate",
+                        "Amount (Merchant Currency)"
+                    },
+                OutputDateTimeFormat = "yyyy-MM-dd HH:mm",
+                MerchantCurrency = "PLN",
+            };
 
         private readonly string fixerIoApiKey = "88b9bb8fb42b5a735fe7f7fd8f90345f";
 
@@ -48,12 +50,16 @@ namespace CSVFixer
         public Form1()
         {
             InitializeComponent();
+
+            Settings = new Settings(DefaultSettings);
+            Settings.Load();
+
             fixerIo = new FixerIo(fixerIoApiKey);
-            foreach(var col in this.columnsToAdd)
+            foreach(var col in Settings.ColumnsToAdd)
             {
                 checkedListBox_columnsToAdd.Items.Add(col, true);
             }
-            textBox_outputDateTimeFormat.Text = defaultOutputDateTimeFormat;
+            textBox_outputDateTimeFormat.Text = Settings.OutputDateTimeFormat;
         }
 
         private void Form1_DragEnter(object sender, DragEventArgs e)
@@ -104,7 +110,7 @@ namespace CSVFixer
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
                 var col = checkedListBox1.Items[i];
-                if (defaultColumns.Contains(col))
+                if (Settings.InputColumnsToInclude.Contains(col))
                 {
                     checkedListBox1.SetItemCheckState(i, CheckState.Checked);
                 }
@@ -171,14 +177,14 @@ namespace CSVFixer
                         switch(colS)
                         {
                             case "Merchant Currency":
-                                csvExport[colS] = this.merchantCurrency;
+                                csvExport[colS] = Settings.MerchantCurrency;
                                 break;
                             case "Currency Conversion Rate":
-                                var rate = fixerIo.GetCurrencyConversionRate(dateTime, transactionCurrency, this.merchantCurrency);
+                                var rate = fixerIo.GetCurrencyConversionRate(dateTime, transactionCurrency, Settings.MerchantCurrency);
                                 csvExport[colS] = rate;
                                 break;
                             case "Amount (Merchant Currency)":
-                                var value = this.fixerIo.Convert(dateTime, transactionCurrency, this.merchantCurrency, transactionValue);
+                                var value = this.fixerIo.Convert(dateTime, transactionCurrency, Settings.MerchantCurrency, transactionValue);
                                 csvExport[colS] = value;
                                 break;
                             default:
@@ -215,5 +221,19 @@ namespace CSVFixer
             TransformAndSave();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            checkBox_nameFileWithMonth.Checked = Settings.NameWithSingleMonth;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings.Save();
+        }
+
+        private void checkBox_nameFileWithMonth_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.NameWithSingleMonth = checkBox_nameFileWithMonth.Checked;
+        }
     }
 }

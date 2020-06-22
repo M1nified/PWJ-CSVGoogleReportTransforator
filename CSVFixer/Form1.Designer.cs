@@ -171,6 +171,7 @@ namespace CSVFixer
             this.checkBox_nameFileWithMonth.TabIndex = 9;
             this.checkBox_nameFileWithMonth.Text = "Name file with single month";
             this.checkBox_nameFileWithMonth.UseVisualStyleBackColor = true;
+            this.checkBox_nameFileWithMonth.CheckedChanged += new System.EventHandler(this.checkBox_nameFileWithMonth_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -282,6 +283,8 @@ namespace CSVFixer
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "PWJ CSV Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.FileList_OnDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             this.groupBox1.ResumeLayout(false);
